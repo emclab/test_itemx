@@ -9,11 +9,11 @@ module TestItemx
     attr_accessible :name, :description, :rate, :active, :short_name, :as => :role_update
 
     belongs_to :standard
-    belongs_to :last_updated_by, :class_name => 'User'
-    has_many :rfq_test_items
-    has_many :rfqs, :through => :rfq_test_items
-    has_many :quote_test_items
-    has_many :quotes, :through => :quote_test_items
+    belongs_to :last_updated_by, :class_name => 'Authentify::User'
+    has_many :rfq_test_items, :class_name => 'Rfqx::RfqTestItem'
+    has_many :rfqs, :through => :rfq_test_items, :class_name => 'Rfqx::RfqTestitem'
+    has_many :quote_test_items, :class_name => 'Quotex::QuoteTestItem'
+    has_many :quotes, :through => :quote_test_items, :class_name => 'Quotex::Quote'
 
     validates :name, :presence => true, :uniqueness => { :scope => :active, :case_sensitive => false }, :if => "active"
     validates :short_name, :presence => true, :uniqueness => { :scope => :active, :case_sensitive => false }, :if => "active"
