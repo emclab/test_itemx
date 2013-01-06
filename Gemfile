@@ -10,11 +10,11 @@ gem "jquery-rails"
 gem 'will_paginate', '~> 3.0'
 
 
-gem 'authentify', :path => '../authentify/'
-gem 'rfqx_emc', :path => '../rfqx_emc/'
-gem 'productx_emc_it' , :path => '../productx_emc_it'
-gem 'quotex' , :path => '../quotex'
-gem 'customerx' , :path => '../customerx'
+#gem 'authentify', :path => '../authentify/'
+#gem 'rfqx_emc', :path => '../rfqx_emc/'
+#gem 'productx_emc_it' , :path => '../productx_emc_it'
+#gem 'quotex' , :path => '../quotex'
+#gem 'customerx' , :path => '../customerx'
 
 gem 'authentify', :git => 'http://github.com/emclab/authentify.git'
 gem 'rfqx_emc', :git => 'http://github.com/emclab/rfqx_emc.git'
