@@ -16,9 +16,10 @@ module TestItemx
 
     describe "'index'" do
       it "should be successful for index" do
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         s = FactoryGirl.create(:standard)
         t = FactoryGirl.create(:test_item, :standard_id => s.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -27,11 +28,10 @@ module TestItemx
       end
 
       it "should be successful for index for sales member" do
-        session[:sales] = true
-        #session[:member] = true
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         s = FactoryGirl.create(:standard)
         t = FactoryGirl.create(:test_item, :standard_id => s.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -40,11 +40,10 @@ module TestItemx
       end
 
       it "should be successful for index for eng member" do
-        session[:eng] = true
-        #session[:member] = true
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         s = FactoryGirl.create(:standard)
         t = FactoryGirl.create(:test_item, :standard_id => s.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -143,8 +142,6 @@ module TestItemx
       end
 
       it "should be success for eng dept head" do
-        #session[:eng] = true
-        session[:eng_dept_head] = true
         s = FactoryGirl.create(:standard)
         t = FactoryGirl.create(:test_item, :standard_id => s.id)
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
@@ -175,8 +172,6 @@ module TestItemx
       end
 
       it "should be successful for eng dept head" do
-        #session[:eng] = true
-        session[:eng_dept_head] = true
         s = FactoryGirl.create(:standard)
         t = FactoryGirl.create(:test_item, :standard_id => s.id)
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')

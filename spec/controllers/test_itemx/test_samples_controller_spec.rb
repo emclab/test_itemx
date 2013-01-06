@@ -17,7 +17,8 @@ module TestItemx
 
     describe "'show'" do
       it "should be successful for everyone" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -54,7 +55,8 @@ module TestItemx
       end
 
       it "should reject for those without rights" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -96,7 +98,8 @@ module TestItemx
 
     describe "'edit'" do
       it "should reject for those without rights" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)

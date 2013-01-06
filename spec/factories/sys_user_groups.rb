@@ -6,5 +6,6 @@ FactoryGirl.define do
     user_type_code 1
     user_type_desp 'employee'
     short_note "MyString"
+    zone "Chicago"
   end
 end

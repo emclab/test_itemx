@@ -15,7 +15,10 @@ module TestItemx
     describe "'index'" do
       it "should be successful" do
         std = FactoryGirl.create(:standard)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
+        action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'update', :table_name => 'test_itemx_standards')
+        right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -32,7 +35,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'update', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -44,7 +47,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'corp_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'update', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -54,7 +57,8 @@ module TestItemx
       end    
       
       it "should be redirected if has no right" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'corp_head')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -69,7 +73,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'corp_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'update', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -82,7 +86,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'update', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -92,7 +96,8 @@ module TestItemx
       end
           
       it "should reject those without rights" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -107,7 +112,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'create', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -116,7 +121,8 @@ module TestItemx
       end
       
       it "should be redirected if has no right" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -130,7 +136,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'create', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -158,7 +164,7 @@ module TestItemx
           ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
           action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'create', :table_name => 'test_itemx_standards')
           right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-          ul = FactoryGirl.create(:authentify_user_level)
+          ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
           u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
           session[:user_id] = u.id
           session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -169,7 +175,8 @@ module TestItemx
           end
 
           it "should create one standard if successful" do
-            ul = FactoryGirl.create(:authentify_user_level)
+            ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
+            ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
             u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
             session[:user_id] = u.id
             session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -186,7 +193,7 @@ module TestItemx
         ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
         action = FactoryGirl.create(:authentify_sys_action_on_table, :action => 'create', :table_name => 'test_itemx_standards')
         right = FactoryGirl.create(:authentify_sys_user_right, :sys_user_group_id => ugrp.id, :sys_action_on_table_id => action.id)
-        ul = FactoryGirl.create(:authentify_user_level)
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)

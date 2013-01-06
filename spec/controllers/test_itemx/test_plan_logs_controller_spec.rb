@@ -16,7 +16,8 @@ module TestItemx
 
     describe "'show'" do
       it "should be successful" do
-        ul = FactoryGirl.create(:authentify_user_level)
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng_dept_head')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
@@ -55,7 +56,8 @@ module TestItemx
         tp = FactoryGirl.create(:test_plan, :quote_id => q.id)
         #session[:user_id] = u.id + 100
         log = FactoryGirl.build(:test_plan_log, :test_plan_id => tp.id)
-        ul = FactoryGirl.create(:authentify_user_level )
+        ugrp = FactoryGirl.create(:authentify_sys_user_group, :user_group_name => 'eng')
+        ul = FactoryGirl.create(:authentify_user_level, :sys_user_group_id => ugrp.id )
         u = FactoryGirl.create(:authentify_user, :user_levels => [ul])
         session[:user_id] = u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(u.id)
