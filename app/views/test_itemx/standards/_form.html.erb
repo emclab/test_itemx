@@ -1,0 +1,8 @@
+<%= simple_form_for @standard do |f| %>    
+  <%= f.input :name, :label => "名称 ：" %>  
+  <%= f.input :description, :label => "内容 ：" %> 
+  <%= f.input :active, :label => "有效? ：", :as => :radio_buttons %> 
+  <%= f.button :submit %>  
+<% end %> 
+
+

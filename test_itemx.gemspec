@@ -7,11 +7,11 @@ require "test_itemx/version"
 Gem::Specification.new do |s|
   s.name        = "test_itemx"
   s.version     = TestItemx::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of TestItemx."
-  s.description = "TODO: Description of TestItemx."
+  s.authors     = ["Emclab"]
+  s.email       = ["support@emclab.com"]
+  s.homepage    = "https://github.com/emclab/test_itemx"
+  s.summary     = "A Test items gem"
+  s.description = "Test Items module"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]

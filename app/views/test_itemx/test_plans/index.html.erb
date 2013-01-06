@@ -1,0 +1,43 @@
+<div id="main_body">
+	<h1>开案单</h1>
+<div class="emclab_pagination"><%= will_paginate %></div>
+</p>
+<table>
+  <tr>
+  	<th>#</th>
+    <th>日期</th>
+    <th>RFQ#/产品名称/型号</th>    
+    <th>客户</th>
+    <th>开始日期</th>
+    <th>部门批准？</th>   
+    <th>样品要求</th> 
+    <th>测试</th>           
+    <th>安规</th>       
+    <th>业务员</th>
+    <th></th>
+  </tr>
+  <% @test_plans.each do |r| %>
+    <tr>
+      <% if has_show_right? %>
+        <td><%= link_to r.id.to_s, SUBURI + "/view_handler?index=1&url=#{quote_test_plan_path(r.quote_id, r)}"  %></td>
+      <% else %>
+        <td><%= r.id %></td>    
+      <% end %>  
+      <td><%= r.created_at.strftime('%Y/%m/%d') %></td>
+      <td>#<%=r.quote.rfq_id.to_s %><%=r.quote.rfq.product.name %> &nbsp; <%=r.quote.rfq.product.model %></td>
+      <td><%= r.quote.rfq.customer.short_name %></td>
+      <td><%= r.start_date.strftime('%Y/%m/%d') %></td> 
+      <td><%= r.approved_by_dept_head %></td> 
+      <td><%= r.sample_requirement %></td>
+      <td><%= r.quote.rfq.emc_eng.name if r.quote.rfq.emc_eng_id.present? %></td>  
+      <td><%= r.quote.rfq.safety_eng.name if r.quote.rfq.safety_eng_id.present? %></td>                     
+      <td><%= r.quote.rfq.sales.name %></td>  
+      <td><%= link_to "Edit", SUBURI + "/view_handler?index=1&url=#{edit_quote_test_plan_path(r.quote_id, r)}" if has_edit_right? %></td>
+    </tr>
+  <% end %>
+</table>
+<p>
+<%= link_to 'Close', SUBURI + "/view_handler?index=0" %> |
+<%= link_to to_chn(:search), search_test_plans_path %>
+</p>
+</div>

@@ -1,0 +1,6 @@
+
+<%= simple_form_for([@test_plan, @test_plan_log]) do |f| %>    
+ 
+  <%= f.input :content, :label => "内容 ：",:input_html => { :rows => 6} %>   
+  <%= f.button :submit, '保存' %>  
+<% end %> 

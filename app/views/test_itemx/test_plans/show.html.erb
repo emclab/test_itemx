@@ -1,0 +1,88 @@
+<div id="main_body">
+<h1>开案单内容</h1>
+
+<p>
+  <b>开案单#:</b>
+  <%= @test_plan.id %>
+</p>
+<p>
+  <b>日期:</b>
+  <%= @test_plan.created_at.strftime("%Y-%m-%d") %>
+</p>
+<p>
+  <b>客户:</b>
+  <%= @quote.rfq.customer.name %>
+</p>
+<p>
+  <b>报价#:</b>
+  <%= @quote.id %>
+</p>
+<p>
+  <b>RFQ#:</b>
+  <%= @quote.rfq_id %>
+</p>
+<p>
+  <b>产品名称:</b>
+  <%= @quote.rfq.product.name %>
+</p>
+
+<p>
+  <b>开始日期:</b>
+  <%= @test_plan.start_date.strftime("%Y-%m-%d") %>
+</p>
+<p>
+  <b>结束日期:</b>
+  <%= @test_plan.finish_date.strftime("%Y-%m-%d") if @test_plan.finish_date.present? %>
+</p>
+<p>
+  <b>样品要求:</b>
+  <%= @test_plan.sample_requirement %>
+</p>
+<p>
+  <b>样品数量:</b>
+  <%= @test_plan.sample_qty %><%= @test_plan.unit %>
+</p>
+<p>
+  <b>测试:</b>
+  <%= @quote.rfq.emc_eng.name if @quote.rfq.emc_eng_id.present? %>
+</p>
+<p>
+  <b>安规:</b>
+  <%= @quote.rfq.safety_eng.name if @quote.rfq.safety_eng_id.present? %>
+</p>
+<p>
+  <b>业务员:</b>
+  <%= @quote.rfq.sales.name %>
+</p>
+
+<p>
+  <b>输入/更改:</b>
+  <%= @test_plan.last_updated_by.name if !@test_plan.last_updated_by_id.nil? && @test_plan.last_updated_by_id > 0 %>
+</p>
+<p>
+  <b>样品记录:</b>	
+  <ul>
+  <% @test_plan.test_samples.order("created_at DESC").each do |f| %>
+  <li>
+  <%= link_to 'Edit', edit_test_plan_test_sample_path(@test_plan, f, :format => :js), :remote => true if has_new_sample_right?(@quote) %>&nbsp;&nbsp;<%= link_to f.created_at.strftime("%Y-%m-%d").to_s + ", " + f.name, test_plan_test_sample_path(@test_plan, f, :format => :js), :remote => true %>
+  </li>
+<% end %>
+</ul>
+</p>
+
+<p>
+  <b>开案单Log:</b>	
+  <ul>
+  <% @test_plan.test_plan_logs.order("created_at DESC").each do |f| %>
+  <li>
+  <%= link_to f.created_at.strftime("%Y-%m-%d").to_s + ", " + f.content[0..20], test_plan_test_plan_log_path(@test_plan, f, :format => :js), :remote => true %>
+  </li>
+<% end %>
+</ul>
+</p>
+
+  <%= link_to 'Back', SUBURI + "/view_handler?index=0", :id => 'close' %>
+  <%= link_to '收到样品', new_test_plan_test_sample_path(@test_plan, :format => :js), :remote => true, :id => 'new_sample_link' if has_new_sample_right? %>
+  <%= link_to '输入Log', new_test_plan_test_plan_log_path(@test_plan, :format => :js), :remote => true, :id => 'new_log_link' if has_log_right? %>
+
+</div>

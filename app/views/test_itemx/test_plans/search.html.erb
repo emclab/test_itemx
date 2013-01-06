@@ -1,0 +1,16 @@
+<div id="main_body">
+<h1><%=to_chn(:search)%> - <%= to_chn(:test_plan)%></h1>
+
+
+<%= simple_form_for @test_plan,  :method => :put, :url => {:action => 'search_results'}  do |f| %>    
+  <%= f.input :earliest_created_at, :label => to_chn(:earliest_created_at) + ":", :as => :string, :input_html => {:size => 40} %>
+  <%= f.input :latest_created_at, :label => to_chn(:latest_created_at) + ":", :as => :string, :input_html => {:size => 40} %>
+  <%= f.input :customer_id_s, :collection => Customer.active_cust.all(:order => 'name'), :label_method => :name, :value_method => :id, :prompt => "选客户", :label => "客户 ："  %> 
+  <%= f.input :eng_id_s, :collection => User.active_eng.all(:order => 'name'), :label_method => :name, :value_method => :id, :prompt => "选" + to_chn(:eng), :label => to_chn(:eng) + ":"  %>  
+  <%= f.input :sales_id_s, :collection => User.active_sales.all(:order => 'name'), :label_method => :name, :value_method => :id, :prompt => "选" + to_chn(:sales), :label => to_chn(:sales) + ":"  %>    
+  <%= f.input :not_approved_by_dept_head_s, :label => '部门未批准', :as => :boolean  %>
+  
+  <%= f.button :submit, to_chn(:search) %>  
+<% end %> 
+
+</div>

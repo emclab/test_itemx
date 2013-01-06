@@ -1,5 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
@@ -45,5 +45,4 @@ RSpec.configure do |config|
 
   # Include Engine routes (needed for Controller specs)
   config.include TestItemx::Engine.routes.url_helpers
-
 end

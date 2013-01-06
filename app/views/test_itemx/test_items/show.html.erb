@@ -1,0 +1,42 @@
+<div id="main_body">
+<h1>测试项目内容</h1>
+ 
+<p class="notice"><%= notice %></p>
+
+<p>
+  <b>标准名称:</b>
+  <%= @test_item.standard.name %>
+</p> 
+<p>
+  <b>项目名称:</b>
+  <%= @test_item.name %>
+</p>
+<p>
+  <b>简称:</b>
+  <%= @test_item.short_name %>
+</p>
+
+<p>
+  <b>内容:</b>
+  <%= @test_item.description %>
+</p>
+ 
+<p>
+  <b>外包？:</b>
+  <%= @test_item.sub_lease %>
+</p>
+<p>
+  <b>项目收费（￥）:</b>
+  <%= @test_item.rate %>
+</p>
+<p>
+  <b>有效?:</b>
+  <%= @test_item.active %>
+</p>
+<p>
+  <b>输入/更改:</b>
+  <%= @test_item.last_updated_by.name %>
+</p>
+ 
+<%= link_to 'Back', SUBURI + "/view_handler?index=0" %>
+</div>

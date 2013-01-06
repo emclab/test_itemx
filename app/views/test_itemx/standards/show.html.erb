@@ -1,0 +1,25 @@
+<div id="main_body">
+<h1>测试标准</h1>
+ 
+<p class="notice"><%= notice %></p>
+ 
+<p>
+  <b>名称:</b>
+  <%= @standard.name %>
+</p>
+ 
+<p>
+  <b>内容:</b>
+  <%= @standard.description %>
+</p> 
+<p>
+  <b>有效?:</b>
+  <%= @standard.active %>
+</p>
+<p>
+  <b>输入/更改人:</b>
+  <%= @standard.last_updated_by.name unless @standard.last_updated_by_id.nil? %>
+</p>
+ 
+<%= link_to 'Back', SUBURI + "/view_handler?index=0" %>
+</div>

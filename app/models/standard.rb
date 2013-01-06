@@ -1,12 +1,10 @@
 # encoding: utf-8
-module TestItemx
+
   class Standard < ActiveRecord::Base
 
-    before_save :set_last_updated_by
 
-    attr_accessor :last_updated_by_id
-    attr_accessible :name, :description, :active, :as => :role_new
-    attr_accessible :name, :description, :active, :as => :role_update
+    attr_accessible :name, :description, :active, :last_updated_by_id, :as => :role_new
+    attr_accessible :name, :description, :active, :last_updated_by_id, :as => :role_update
 
     has_many :test_item
     belongs_to :last_updated_by, :class_name => 'Authentify::User'
@@ -20,9 +18,6 @@ module TestItemx
 
     protected
 
-    def set_last_updated_by
-      self.last_updated_by = Authentify::User.find_by_id(last_updated_by_id)
-    end
 
   end
-end
+

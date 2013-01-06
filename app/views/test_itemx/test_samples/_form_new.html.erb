@@ -1,0 +1,12 @@
+<%= simple_form_for([@test_plan, @test_sample]) do |f| %>    
+ 
+  <%= f.input :name, :label => "样品名：", :readonly => true %>  
+  <%= f.input :desp, :label => "内容： " %>  
+  <%= f.input :qty, :label => "数量：" %>   
+  <%= f.input :unit, :label => "单位： ", :collection => return_sample_unit, :include_blank => true %> 
+  <%= f.input :manufacturer_id, :label => '制造商：', :collection => Manufacturer.active_mfg.order("name"), :include_blank => true %> 
+  <%= f.input :periphral_requirement, :label => "外设要求：", :input_html => {:rows => 6} %>  
+  <%= f.input :sample_doc, :label => "所附文件：" %>   
+  <%= f.input :storage_location, :label => "存放地点： "%>  
+  <%= f.button :submit, '保存' %>  
+<% end %> 

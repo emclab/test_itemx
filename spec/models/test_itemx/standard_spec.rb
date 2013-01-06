@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TestItemx::Standard do
+describe Standard do
   it "name shouldn't be nil" do
     std = FactoryGirl.build(:standard, :name => nil)
     std.should_not be_valid

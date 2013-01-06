@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :standard, class: 'TestItemx::Standard' do
+  factory :standard, class: 'Standard' do
     name "a emc standard"
     description "details about a emc standard"
     active true

@@ -1,0 +1,15 @@
+<div style="padding-left:39px">
+标准名称：    <%= @test_item.standard.name %>  
+</div>
+<%= simple_form_for @test_item do |f| %>    
+ 
+  <%= f.input :name, :label => "名称 ：" %>  
+  <%= f.input :short_name, :label => "简称 ：", :hint => '2-6字' %> 
+  <%= f.input :description, :label => "内容 ：" %> 
+  <%= f.input :rate, :label => "收费￥ ：" %>
+  <%= f.input :sub_lease, :label => "外包？ :", :as => :radio_buttons %>  
+  <%= f.input :active, :label => "有效? ：", :as => :radio_buttons %> 
+  <%= f.button :submit %>  
+<% end %> 
+
+

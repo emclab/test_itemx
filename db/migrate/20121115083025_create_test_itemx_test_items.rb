@@ -8,6 +8,7 @@ class CreateTestItemxTestItems < ActiveRecord::Migration
       t.decimal :rate,  :precision => 8, :scale => 2
       t.boolean :active, :default => true
       t.integer :last_updated_by_id
+      t.boolean :sub_lease, :default => false
 
       t.timestamps
     end

@@ -1,0 +1,23 @@
+<div id="main_body">
+<h1>开案单Log内容</h1>
+ 
+<p class="notice"><%= notice %></p>
+<p>
+<p>
+<b>日期： </b>
+<%= @test_plan_log.created_at.strftime('%Y/%m/%d') %>
+<p>
+<p>
+  <b>内容:</b>
+  <%= @test_plan_log.content %>
+</p>
+<p>
+  <b>输入/更改:</b>
+  <%= @test_plan_log.last_updated_by.name if !@test_plan_log.last_updated_by_id.nil? && @test_plan_log.last_updated_by_id > 0 %>
+</p>
+
+<%= link_to 'Back', quote_test_itemx_test_plan_path(@test_plan.quote, @test_plan) %>
+<% if has_destroy_right? %>
+  <%= link_to '删除', test_plan_test_plan_log_path(@test_plan.id, @test_plan_log.id), :confirm => "删除Log？", :method => :delete, :remote => true %>
+<% end %>
+</div>

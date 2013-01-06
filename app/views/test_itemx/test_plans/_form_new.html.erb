@@ -1,0 +1,19 @@
+<%= simple_form_for([@quote, @test_plan]) do |f| %>    
+
+  <div style="padding-left:50px">报价# ：&nbsp;&nbsp;<%= @quote.id %></div>
+  <div style="padding-left:56px">客户 ：&nbsp;&nbsp;<%= @quote.rfq.customer.name %></div>
+  <div style="padding-left:25px">产品名称 ：&nbsp;&nbsp;<%= @quote.rfq.product.name %></div>
+  <div style="padding-left:25px">产品型号 ：&nbsp;&nbsp;<%= @quote.rfq.product.model %></div>
+  <div style="padding-left:50px">测试 ：&nbsp;&nbsp;<%= @quote.rfq.emc_eng.name if @quote.rfq.emc_eng_id.present? %></div> 
+  <div style="padding-left:50px">安规 ：&nbsp;&nbsp;<%= @quote.rfq.safety_eng.name if @quote.rfq.safety_eng_id.present? %></div>   
+  <div style="padding-left:40px">业务员 ：&nbsp;&nbsp;<%= @quote.rfq.sales.name %></div>   
+
+  <%= f.input :sample_requirement, :label => '样品要求：', :input_html => {:rows => 8} %> 
+   
+  <%= f.input :start_date, :label => '开始日期 ：', :as => :string %> 
+  <%= f.input :finish_date, :label => '结束日期 ：', :as => :string %>   
+  <%= f.input :sample_qty, :label => '样品数量：' %>
+  <%= f.input :unit, :collection => return_sample_unit, :label => '样品单位：' %>    
+   
+  <%= f.button :submit, '保存' %>  
+<% end %> 

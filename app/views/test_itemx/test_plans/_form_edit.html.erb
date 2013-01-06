@@ -1,0 +1,24 @@
+<%= simple_form_for([@quote, @test_plan]) do |f| %>    
+
+  <div class="input"><label class="string">报价# ：</label><%= @quote.id %></div>
+  <div class="input"><label class="string">客户 ：</label><%= @quote.rfq.customer.name %></div>
+  <div class="input"><label class="string">产品名称 ：</label><%= @quote.rfq.product.name %></div> 
+  <div class="input"><label class="string">产品型号 ：</label><%= @quote.rfq.product.model %></div> 
+  <div class="input"><label class="string">测试 ：</label><%= @quote.rfq.emc_eng.name if @quote.rfq.emc_eng_id.present? %></div> 
+  <div class="input"><label class="string">安规 ：</label><%= @quote.rfq.safety_eng.name if @quote.rfq.safety_eng_id.present? %></div>   
+  <div class="input"><label class="string">业务员 ：</label><%= @quote.rfq.sales.name %></div>   
+
+  <%= f.input :sample_requirement, :label => '样品要求：', :input_html => {:rows => 3} %> 
+   
+  <%= f.input :start_date, :label => '开始日期 ：', :as => :string %> 
+  <%= f.input :finish_date, :label => '结束日期 ：', :as => :string %>   
+  <%= f.input :sample_qty, :label => '样品数量：' %>
+  <%= f.input :unit, :collection => return_sample_unit, :label => '样品单位：' %>    
+  <% if has_approve_right? %>
+    <%= f.input :approved_by_dept_head, :label => '部门批准？：', :collection => [['',''], ['Yes', true], ['No', false]], :selected => @quote.approved_by_dept_head %>
+  <% else %>
+    <div><label class="string">部门批准？ ：</label>&nbsp;&nbsp;<%= @test_plan.approved_by_dept_head unless @test_plan.approved_by_dept_head.nil? %> </div>
+  <% end %>
+   
+  <%= f.button :submit, '保存' %>  
+<% end %> 

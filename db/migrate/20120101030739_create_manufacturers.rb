@@ -1,8 +1,9 @@
-class CreateTestItemxStandards < ActiveRecord::Migration
+class CreateManufacturers < ActiveRecord::Migration
   def change
-    create_table :test_itemx_standards do |t|
+    create_table :manufacturers do |t|
       t.string :name
-      t.text :description
+      t.string :address
+      t.string :web
       t.boolean :active, :default => true
       t.integer :last_updated_by_id
 

@@ -1,0 +1,29 @@
+<div id="main_body">
+
+<h1>测试标准</h1>
+<table>
+  <tr>
+  	<th>#</th>
+    <th>名称</th>
+    <th>内容</th>
+    <% if has_edit_create_right? %>
+      <th>Active?</th>
+    <% end %>
+    <th></th>
+ 
+  </tr>
+
+<% @standards.each do |std| %>
+  <tr>
+    <td><%= link_to std.id.to_s, SUBURI + "/view_handler?index=1&url=#{standard_path(std)}" %></td>  	
+    <td><%= std.name %></td>
+    <td><%= std.description %></td>
+    <td><%= std.active if has_edit_create_right? %></td>
+    <td><%= link_to 'Edit', SUBURI + "/view_handler?url=#{edit_standard_path(std)}&index=1" if has_edit_create_right? %></td>
+  </tr>
+<% end %>
+
+</table>
+  <%= link_to '输入标准', SUBURI + "/view_handler?url=#{new_standard_path}&index=1" if has_edit_create_right? %>
+  <%= link_to 'Back', SUBURI + "/view_handler?index=0" %>
+</div>

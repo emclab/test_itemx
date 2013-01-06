@@ -1,0 +1,38 @@
+<div id="main_body">
+<h1>测试项目</h1>
+<table>
+  <tr>
+    <th>#</th>  	
+    <th>项目名称</th>
+    <th>内容</th>
+    <th>标准名称</th>    
+    <th>收费（￥）</th> 
+    <th>外包？</th>      
+    <% if has_edit_right? %>
+      <th>有效?</th>
+      <th></th>      
+    <% end %>
+ 
+  </tr>
+
+<% @test_items.each do |item| %>
+  <tr>
+    <td><%= link_to item.id.to_s, SUBURI + "/view_handler?index=1&url=#{test_item_path(item)}" %></td>  	
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td><%= item.standard.name %></td>
+    <td><%= item.rate %></td> 
+    <td><%= item.sub_lease %></td>             
+    <% if has_edit_right? %>    
+      <td><%= item.active %></td>
+      <td><%= link_to "Edit", SUBURI + "/view_handler?index=1&url=#{edit_test_item_path(item)}" %></td>
+    <% end %>
+
+  </tr>
+<% end %>
+</table>
+<% if has_create_right? %>
+  <%= link_to "输入测试项目", SUBURI + "/view_handler?index=1&url=#{new_test_item_path}" %>
+<% end %>
+  <%= link_to 'Back', SUBURI + "/view_handler?index=0" %>
+</div>

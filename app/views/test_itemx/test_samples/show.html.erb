@@ -1,0 +1,40 @@
+<div id="main_body">
+<h1>样品内容</h1>
+<p>
+  <b>样品名称:</b>
+  <%= @test_sample.name %>
+</p>
+<p>
+  <b>内容:</b>
+  <%= @test_sample.desp %>
+</p>
+<p>
+  <b>制造商:</b>
+  <%= @test_sample.manufacturer.name if @test_sample.manufacturer_id.present? %>
+</p>
+<p>
+  <b>数量#:</b>
+  <%= @test_sample.qty %><%= @test_sample.unit %>
+</p>
+<p>
+  <b>存放地址:</b>
+  <%= @test_sample.storage_location %>
+</p>
+<p>
+  <b>收件日期:</b>
+  <%= @test_sample.created_at.strftime("%Y-%m-%d") %>
+</p>
+<p>
+  <b>归还日期:</b>
+  <%= @test_sample.return_date.strftime("%Y-%m-%d") if @test_sample.return_date.present? %>
+</p>
+
+<p>
+  <b>收件/更改人:</b>
+  <%= @test_sample.last_updated_by.name if !@test_sample.last_updated_by_id.nil? && @test_sample.last_updated_by_id > 0 %>
+</p>
+
+  <%= link_to 'Back', quote_test_plan_path(@test_plan.quote, @test_plan) %>
+  <%= link_to '删除', test_plan_test_sample_path(@test_plan, @test_sample), :method => :delete, :confirm => '删除样品?' if has_delete_right? %>
+
+</div>
